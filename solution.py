@@ -11,4 +11,12 @@ def solution(x_success: int,
     # Измените код этой функции
     # Это будет вашим решением
     # Не меняйте название функции и её аргументы
-    return ... # Ваш ответ, True или False
+    alpha = 0.1
+
+    table = [[x_success, (x_cnt - x_success)],
+             [y_success, (y_cnt - y_success)]]
+    
+    res = sps.fisher_exact(table, alternative='less')
+
+    do_reject = (res[1] < alpha)
+    return do_reject # Ваш ответ, True или False
